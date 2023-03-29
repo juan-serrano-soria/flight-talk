@@ -1,9 +1,12 @@
+import { useSetAtom } from "jotai/react";
 import { Text, View } from "react-native";
+import isLoggedIn from "../state/state";
 
 const Chats = ({ navigation }) => {
+  const setIsLoggedIn = useSetAtom(isLoggedIn);
 
   const logOut = () => {
-    navigation.navigate('Login');
+    setIsLoggedIn(false);
   };
 
   return (

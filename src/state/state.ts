@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 
 const isLoggedIn = atom(false);
+const currentUserData = atom({});
 
-export default isLoggedIn;
+export { isLoggedIn, currentUserData };

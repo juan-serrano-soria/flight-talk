@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai/react';
 import Chats from './screens/Chats';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
-import isLoggedIn from './state/state';
+import { isLoggedIn } from './state/state';
 
 const Stack = createNativeStackNavigator();
 

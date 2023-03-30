@@ -3,24 +3,46 @@ import { useSetAtom } from "jotai/react";
 import { useState } from "react";
 import { Text, View, TextInput, Alert } from "react-native";
 import { auth } from "../firebase";
-import isLoggedIn from "../state/state";
+import { getDatabase, ref, child, get } from "firebase/database";
+import { currentUserData, isLoggedIn } from "../state/state";
 
 const Login = ({ navigation }) => {
+  const setIsLoggedIn = useSetAtom(isLoggedIn);
+  const setCurrentUserData = useSetAtom(currentUserData);
 
   const goToSignUp = () => {
     navigation.navigate('SignUp');
   };
-
-  const setIsLoggedIn = useSetAtom(isLoggedIn);
 
   const logIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user; // later see what to do with this
         setIsLoggedIn(true);
+        
+        // get user info from realtime database
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `users/`)).then((snapshot) => {
+          if (snapshot.exists()) {
+            console.log(snapshot.val());
+
+            // find current user
+            for (var user in snapshot.val()){
+              var currentEmail = snapshot.val()[user]["email"];
+              if (currentEmail === email) {
+                setCurrentUserData(snapshot.val()[user]);
+                break;
+              }
+            }
+          } else {
+            console.log("No data available");
+          }
+        }).catch((error) => {
+          console.error(error);
+        });
       })
       .catch((error) => {
-        Alert.alert("Auth failed\n" + error.code + " " + error.message);
+        Alert.alert("Auth failed\n", error.code + " " + error.message);
       });
   };
 

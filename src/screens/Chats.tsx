@@ -1,12 +1,18 @@
+import { signOut } from "firebase/auth";
 import { useSetAtom } from "jotai/react";
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
+import { auth } from "../firebase";
 import isLoggedIn from "../state/state";
 
 const Chats = ({ navigation }) => {
   const setIsLoggedIn = useSetAtom(isLoggedIn);
 
   const logOut = () => {
-    setIsLoggedIn(false);
+    signOut(auth).then(() => {
+      setIsLoggedIn(false);
+    }).catch((error) => {
+      Alert.alert("Log out error\n" + error.errorCode + " " + error.errorMessage);
+    });
   };
 
   return (

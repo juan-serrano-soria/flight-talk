@@ -11,7 +11,9 @@ export default function Navigation() {
   const isLogged = useAtomValue(isLoggedIn);
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }}>
       {
         isLogged ? (
           <>

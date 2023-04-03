@@ -17,6 +17,7 @@ const ChatList = () => {
   return (
     <FlatList
       data={DATA}
+      showsVerticalScrollIndicator={false}
       renderItem={({ item }) => { return <ChatListItem name={item.name} chatId={item.chatId} />}}
     />
   )

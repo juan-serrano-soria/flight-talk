@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { useSetAtom, useAtomValue } from "jotai/react";
-import { Alert, Text, View } from "react-native";
+import { Text, View, StyleSheet, Button } from "react-native";
 import ChatList from "../components/ChatList";
 import { auth } from "../firebase";
 import { isLoggedIn, currentUserData } from "../state/state";
@@ -13,18 +13,41 @@ const Chats = ({ navigation }) => {
     signOut(auth).then(() => {
       setIsLoggedIn(false);
     }).catch((error) => {
-      Alert.alert("Log out error\n", error.errorCode + " " + error.errorMessage);
+      console.log("Log out error\n", error.errorCode + " " + error.errorMessage);
     });
   };
 
+  console.log(getCurrentUserData);
+
   return (
-    <View  style={{ flex: 1, backgroundColor: 'black', alignItems: 'center', padding: 10}}>
-      <Text style={{ padding: 10}}>Current user data:</Text>
-      <Text style={{ padding: 10}}>{JSON.stringify(getCurrentUserData)}</Text>
-      <ChatList />
-      <Text  style={{ padding: 10}} onPress={logOut}>Log out</Text>
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.title}>Chats</Text>
+      </View>
+      <View style={styles.button}>
+        <Button onPress={logOut} title="Log Out"/>
+      </View>
+      <View style={{ width: '100%' }}>
+        <ChatList />
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'black'
+  },
+  title: {
+    fontSize: 40,
+    margin: 10,
+  },
+  button: {
+    width: "70%",
+    margin: 5,
+  }
+});
 
 export default Chats;

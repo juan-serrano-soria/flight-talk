@@ -7,7 +7,7 @@ type ChatListItemProps = {
 
 const ChatListItem = (props: ChatListItemProps) => {
   return (
-    <Text>
+    <Text style={{ padding: 20, fontSize: 15 }}>
       {props.name}: {props.chatId}
     </Text>
   )

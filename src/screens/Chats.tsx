@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useSetAtom, useAtomValue } from "jotai/react";
 import { Alert, Text, View } from "react-native";
+import ChatList from "../components/ChatList";
 import { auth } from "../firebase";
 import { isLoggedIn, currentUserData } from "../state/state";
 
@@ -20,6 +21,7 @@ const Chats = ({ navigation }) => {
     <View  style={{ flex: 1, backgroundColor: 'black', alignItems: 'center', padding: 10}}>
       <Text style={{ padding: 10}}>Current user data:</Text>
       <Text style={{ padding: 10}}>{JSON.stringify(getCurrentUserData)}</Text>
+      <ChatList />
       <Text  style={{ padding: 10}} onPress={logOut}>Log out</Text>
     </View>
   )

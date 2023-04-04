@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAtomValue } from 'jotai/react';
+import ChatDetail from './screens/ChatDetail';
 import Chats from './screens/Chats';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
@@ -17,13 +18,8 @@ export default function Navigation() {
       {
         isLogged ? (
           <>
-            <Stack.Screen
-              options={{
-                headerBackVisible: false,
-              }}
-              name="Chats"
-              component={Chats}
-            />
+            <Stack.Screen name="Chats" component={Chats}/>
+            <Stack.Screen name="ChatDetail" component={ChatDetail}/>
           </>
         ) : (
           <>

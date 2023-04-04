@@ -1,4 +1,5 @@
-import { Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Text, Pressable } from 'react-native';
 
 type ChatListItemProps = {
   name: string,
@@ -6,10 +7,15 @@ type ChatListItemProps = {
 };
 
 const ChatListItem = (props: ChatListItemProps) => {
+  const navigation = useNavigation()
   return (
-    <Text style={{ padding: 20, fontSize: 15 }}>
-      {props.name}: {props.chatId}
-    </Text>
+    <Pressable
+      onPress={() => {navigation.navigate('ChatDetail', { props })}}
+    >
+      <Text style={{ padding: 20, fontSize: 15 }}>
+        {props.name}: {props.chatId}
+      </Text>
+    </Pressable>
   )
 }
 

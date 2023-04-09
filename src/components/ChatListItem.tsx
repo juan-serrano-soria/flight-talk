@@ -13,7 +13,7 @@ const ChatListItem = (props: ChatListItemProps) => {
       onPress={() => {navigation.navigate('ChatDetail', { props })}}
     >
       <Text style={{ padding: 20, fontSize: 15 }}>
-        {props.name}: {props.chatId}
+        {props.name}
       </Text>
     </Pressable>
   )

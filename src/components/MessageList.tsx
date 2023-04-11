@@ -20,6 +20,7 @@ const MessageList = (props: MessageListProps) => {
     <FlatList
       data={DATA}
       showsVerticalScrollIndicator={false}
+      inverted
       renderItem={({ item }) => { return <MessageListItem from={item.from} message={item.message} type={item.type}/>}}
     />
   )

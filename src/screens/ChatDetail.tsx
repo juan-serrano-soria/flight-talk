@@ -7,87 +7,87 @@ const ChatDetail = ({ route, navigation }) => {
   const testMessages = {
     "1680258796213": {
       "from": "testUser1",
-      "message": "Hello!",
+      "message": "1Hello! This is a long ass message to try max width",
       "type": "text"
     },
     "1680258776213": {
       "from": "testUser2",
-      "message": "How are you?",
+      "message": "2How are you?",
       "type": "text"
     },
     "1680258676213": {
       "from": "testUser2",
-      "message": "Hello World!",
+      "message": "3Hello",
       "type": "text"
     },
     "1680258596213": {
       "from": "testUser1",
-      "message": "Hello!",
+      "message": "4Hello!",
       "type": "text"
     },
     "1680258476213": {
       "from": "testUser2",
-      "message": "How are you?",
+      "message": "5How are you?",
       "type": "text"
     },
     "1680258376213": {
       "from": "testUser2",
-      "message": "Hello World!",
+      "message": "6Hello World!",
       "type": "text"
     },
     "1680258296213": {
       "from": "testUser1",
-      "message": "Hello!",
+      "message": "7Hello!",
       "type": "text"
     },
     "1680258176213": {
       "from": "testUser2",
-      "message": "How are you?",
+      "message": "8How are you?",
       "type": "text"
     },
     "1680258076213": {
       "from": "testUser2",
-      "message": "Hello World!",
+      "message": "9Hello World!",
       "type": "text"
     },
     "1680257076213": {
       "from": "testUser2",
-      "message": "Hello World!",
+      "message": "10Hello World!",
       "type": "text"
     },
     "1680256096213": {
       "from": "testUser1",
-      "message": "Hello!",
+      "message": "11Hello!",
       "type": "text"
     },
     "1680255076213": {
       "from": "testUser2",
-      "message": "How are you?",
+      "message": "12How are you?",
       "type": "text"
     },
     "1680254076213": {
       "from": "testUser2",
-      "message": "Hello World!",
+      "message": "13Hello World!",
       "type": "text"
     },
     "1680253076213": {
       "from": "testUser2",
-      "message": "Hello World!",
+      "message": "14Hello World!",
       "type": "text"
     },
     "1680252096213": {
       "from": "testUser1",
-      "message": "Hello!",
+      "message": "15Hello!",
       "type": "text"
     },
     "1680251076213": {
       "from": "testUser2",
-      "message": "How are you?",
+      "message": "16How are you?",
       "type": "text"
     },
     "1680250076213": {
       "from": "testUser2",
-      "message": "Hello World!",
+      "message": "17Hello Pepe!",
       "type": "text"
     }
   }
@@ -100,7 +100,7 @@ const ChatDetail = ({ route, navigation }) => {
       <View style={styles.button}>
         <Button onPress={() => {navigation.navigate("Chats")}} title="<-"/>
       </View>
-      <View style={{ width: '100%' }}>
+      <View style={{ width: '100%', flex: 1 }}>
         <MessageList messages={testMessages} />
       </View>
     </View>

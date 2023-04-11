@@ -17,8 +17,6 @@ const Chats = ({ navigation }) => {
     });
   };
 
-  console.log(getCurrentUserData);
-
   return (
     <View style={styles.container}>
       <View>

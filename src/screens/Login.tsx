@@ -4,11 +4,12 @@ import { useState } from "react";
 import { Text, View, TextInput, StyleSheet, Button, Alert } from "react-native";
 import { auth } from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { currentUserData, isLoggedIn } from "../state/state";
+import { currentUserData, currentUserFriends, isLoggedIn } from "../state/state";
 
 const Login = ({ navigation }) => {
   const setIsLoggedIn = useSetAtom(isLoggedIn);
   const setCurrentUserData = useSetAtom(currentUserData);
+  const setCurrentUserFriends = useSetAtom(currentUserFriends);
 
   const goToSignUp = () => {
     navigation.navigate('SignUp');
@@ -18,19 +19,18 @@ const Login = ({ navigation }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user; // later see what to do with this
-        setIsLoggedIn(true);
         
         // get user info from realtime database
         const dbRef = ref(getDatabase());
         get(child(dbRef, `users/`)).then((snapshot) => {
           if (snapshot.exists()) {
-            console.log(snapshot.val());
 
             // find current user
             for (var user in snapshot.val()){
               var currentEmail = snapshot.val()[user]["email"];
               if (currentEmail === email) {
                 setCurrentUserData(snapshot.val()[user]);
+                setCurrentUserFriends(snapshot.val()[user]["friends"]);
                 break;
               }
             }
@@ -40,6 +40,8 @@ const Login = ({ navigation }) => {
         }).catch((error) => {
           console.error(error);
         });
+
+        setIsLoggedIn(true);
       })
       .catch((error) => {
         Alert.alert("Auth failed\n", error.code + " " + error.message);

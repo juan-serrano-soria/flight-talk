@@ -10,7 +10,7 @@ type MessageListItemProps = {
 
 const MessageListItem = (props: MessageListItemProps) => {
 
-  const currentUser = Object.keys(useAtomValue(currentUserData))[0];
+  const currentUser = useAtomValue(currentUserData)["user"];
 
   return (
     <View style={ props.from === currentUser ? styles.boxSelf : styles.boxFriend }>

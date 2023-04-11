@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View, TextInput } from "react-native";
 import MessageList from "../components/MessageList";
 
 const ChatDetail = ({ route, navigation }) => {
@@ -103,6 +103,17 @@ const ChatDetail = ({ route, navigation }) => {
       <View style={{ width: '100%', flex: 1 }}>
         <MessageList messages={testMessages} />
       </View>
+      <View style={styles.inputBoxContainer}>
+        <View style={styles.selectImage}>
+          <Button onPress={() => {}} title="+"/>
+        </View>
+        <TextInput 
+          style={styles.input}
+        />
+        <View style={styles.selectImage}>
+          <Button onPress={() => {}} title=">"/>
+        </View>
+      </View>
     </View>
   )
 }
@@ -120,7 +131,22 @@ const styles = StyleSheet.create({
   button: {
     width: "70%",
     margin: 5,
-  }
+  },
+  input: {
+    height: 40,
+    width: '70%',
+    margin: 5,
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: 10,
+  },
+  selectImage: {
+    paddingTop: 7.5,
+    width: '10%',
+  },
+  inputBoxContainer: {
+    flexDirection: 'row',
+  },
 });
 
 export default ChatDetail;

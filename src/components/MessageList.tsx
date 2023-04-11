@@ -1,7 +1,5 @@
 import { FlatList } from "react-native";
-import { useAtomValue } from "jotai/react";
 import MessageListItem from "./MessageListItem";
-import { currentUserData } from "../state/state";
 
 
 type MessageListProps = {

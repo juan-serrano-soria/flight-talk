@@ -10,7 +10,6 @@ const ChatDetail = ({ route, navigation }) => {
   const [messages, setMessages] = useState({});
 
   useEffect(() => {
-    console.log("Hago stuff con: " + 'chats/' + chatId);
     const chatRef = ref(database, 'chats/' + chatId);
     onValue(chatRef, (snapshot) => {
       const data = snapshot.val();

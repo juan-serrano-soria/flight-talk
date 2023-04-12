@@ -1,16 +1,15 @@
 import { FlatList } from "react-native";
-import { useAtomValue } from "jotai/react";
 import ChatListItem from "./ChatListItem";
-import { currentUserData, currentUserFriends } from "../state/state";
 
+type ChatListProps = {
+  chats,
+}
 
-const ChatList = () => {
+const ChatList = (props: ChatListProps) => {
 
-  const friends = useAtomValue(currentUserFriends);
-
-  const DATA = Object.keys(friends).map(key => ({
+  const DATA = Object.keys(props.chats).map(key => ({
     name: key,
-    chatId: friends[key]
+    chatId: props.chats[key]
   }));
 
   return (

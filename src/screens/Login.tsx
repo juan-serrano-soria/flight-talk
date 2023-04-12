@@ -4,12 +4,13 @@ import { useState } from "react";
 import { Text, View, TextInput, StyleSheet, Button, Alert } from "react-native";
 import { auth } from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { currentUserData, currentUserFriends, isLoggedIn } from "../state/state";
+import { currentUserData, currentUserFriends, currentUserName, isLoggedIn } from "../state/state";
 
 const Login = ({ navigation }) => {
   const setIsLoggedIn = useSetAtom(isLoggedIn);
   const setCurrentUserData = useSetAtom(currentUserData);
   const setCurrentUserFriends = useSetAtom(currentUserFriends);
+  const setCurrentUserName = useSetAtom(currentUserName);
 
   const goToSignUp = () => {
     navigation.navigate('SignUp');
@@ -31,6 +32,7 @@ const Login = ({ navigation }) => {
               if (currentEmail === email) {
                 setCurrentUserData(snapshot.val()[user]);
                 setCurrentUserFriends(snapshot.val()[user]["friends"]);
+                setCurrentUserName(user);
                 break;
               }
             }

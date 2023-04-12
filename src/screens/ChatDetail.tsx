@@ -1,13 +1,16 @@
 import { Button, StyleSheet, Text, View, TextInput } from "react-native";
 import { useState, useEffect } from "react";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, set } from "firebase/database";
 import MessageList from "../components/MessageList";
 import { database } from "../firebase";
+import { useAtomValue } from "jotai";
+import { currentUserName } from "../state/state";
 
 const ChatDetail = ({ route, navigation }) => {
   const { name, chatId } = route.params.props;
   const [currentMessage, setCurrentMessage] = useState("");
   const [messages, setMessages] = useState({});
+  const currentUser = useAtomValue(currentUserName);
 
   useEffect(() => {
     const chatRef = ref(database, 'chats/' + chatId);
@@ -18,7 +21,13 @@ const ChatDetail = ({ route, navigation }) => {
   }, []);
 
   const onSendTextMessage = () => {
-    // send message to firebase
+    const timeStamp = Date.now();
+
+    set(ref(database, 'chats/' + chatId + "/messages/" + timeStamp), {
+      from: currentUser,
+      message: currentMessage,
+      type: "text"
+    });
 
     setCurrentMessage("");
   };

@@ -1,5 +1,5 @@
 import { useAtomValue } from 'jotai';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { currentUserData } from '../state/state';
 
 type MessageListItemProps = {
@@ -14,9 +14,13 @@ const MessageListItem = (props: MessageListItemProps) => {
 
   return (
     <View style={ props.from === currentUser ? styles.boxSelf : styles.boxFriend }>
-        <Text style={styles.text}>
-          {props.message}
-        </Text>
+        {props.type === "text" ? 
+          (<Text style={styles.text}>
+            {props.message}
+          </Text>)
+          :
+          (<Image  style={styles.image} source={{uri: `data:image/png;base64,${props.message}`}}/>)
+        }
     </View>
   )
 }
@@ -41,6 +45,13 @@ const styles = StyleSheet.create({
   text: {
     padding: 10,
     fontSize: 15,
+  },
+  image: {
+    height: 128,
+    width: 128,
+    resizeMode: 'cover',
+    margin: 5,
+    borderRadius:25,
   }
 });
 

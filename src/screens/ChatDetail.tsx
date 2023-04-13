@@ -1,10 +1,11 @@
-import { Button, StyleSheet, Text, View, TextInput } from "react-native";
+import { Button, StyleSheet, Text, View, TextInput, Alert } from "react-native";
 import { useState, useEffect } from "react";
 import { ref, onValue, set } from "firebase/database";
 import MessageList from "../components/MessageList";
 import { database } from "../firebase";
 import { useAtomValue } from "jotai";
 import { currentUserName } from "../state/state";
+import { launchImageLibrary } from "react-native-image-picker";
 
 const ChatDetail = ({ route, navigation }) => {
   const { name, chatId } = route.params.props;
@@ -32,6 +33,29 @@ const ChatDetail = ({ route, navigation }) => {
     setCurrentMessage("");
   };
 
+  const onSendImageMessage = async () => {
+
+    let result = await launchImageLibrary({
+      mediaType: 'photo',
+      quality: 0.5,
+      includeBase64: true,
+      maxHeight: 512,
+      maxWidth: 512,
+    });
+
+    if (!result.didCancel) {
+      const timeStamp = Date.now();
+
+      set(ref(database, 'chats/' + chatId + "/messages/" + timeStamp), {
+        from: currentUser,
+        message: result.assets[0].base64,
+        type: "image"
+      });
+    } else {
+      Alert.alert('Warning!', 'You did not select any image.');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -45,7 +69,7 @@ const ChatDetail = ({ route, navigation }) => {
       </View>
       <View style={styles.inputBoxContainer}>
         <View style={styles.selectImage}>
-          <Button onPress={() => {}} title="+"/>
+          <Button onPress={onSendImageMessage} title="+"/>
         </View>
         <TextInput 
           style={styles.input}

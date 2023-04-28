@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     margin: 5,
     color: 'black',
+    fontWeight: 'bold',
   },
   buttonPrimaryRipple: {
     color: '#88A6F9',

@@ -28,17 +28,17 @@ const MessageListItem = (props: MessageListItemProps) => {
 const styles = StyleSheet.create({
   boxSelf: {
     marginHorizontal: 10,
-    marginVertical: 10,
+    marginVertical: 5,
     alignSelf: 'flex-end',
-    backgroundColor: '#005F00',
+    backgroundColor: '#5B88FB',
     maxWidth: 200,
     borderRadius: 25,
   },
   boxFriend: {
     marginHorizontal: 10,
-    marginVertical: 10,
+    marginVertical: 5,
     alignSelf: 'flex-start',
-    backgroundColor: '#00405F',
+    backgroundColor: '#F3F3F3',
     maxWidth: 200,
     borderRadius: 25,
   },
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 15,
     marginHorizontal: 5,
+    color: 'black',
   },
   image: {
     height: 128,

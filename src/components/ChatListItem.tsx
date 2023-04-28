@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 60,
     overflow: 'hidden',
+    borderRadius: 0,
   },
   pressable: {
     backgroundColor: "#575757",

@@ -1,5 +1,6 @@
-import { Text, TextInput, View, StyleSheet, Button, Alert } from "react-native";
+import { Text, TextInput, View, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
+import TextButton from "../components/TextButton";
 
 const SignUp = ({ navigation }) => {
 
@@ -54,10 +55,10 @@ const SignUp = ({ navigation }) => {
         />
       </View>
       <View style={styles.button}>
-        <Button onPress={signUp} title="Sign Up"/>
+        <TextButton onPress={signUp} label="Sign Up" theme="primary"/>
       </View>
       <View style={styles.button}>
-        <Button onPress={cancel} title="Cancel" color="#cf142b"/>
+        <TextButton onPress={cancel} label="Cancel" theme="secondary"/>
       </View>
     </View>
   )

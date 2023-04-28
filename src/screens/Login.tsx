@@ -75,11 +75,10 @@ const Login = ({ navigation }) => {
         />
       </View>
       <View style={styles.button}>
-        {/* <Button onPress={logIn} title="Log In"/> */}
-        <TextButton onPress={logIn} label="Log In"/>
+        <TextButton onPress={logIn} label="Log In" theme="primary" />
       </View>
       <View style={styles.button}>
-        <TextButton onPress={goToSignUp} label="Sign Up"/>
+        <TextButton onPress={goToSignUp} label="Sign Up" theme="primary"/>
       </View>
     </View>
   )

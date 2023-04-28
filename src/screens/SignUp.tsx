@@ -63,32 +63,33 @@ const SignUp = ({ navigation }) => {
   )
 }
   
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: 'black',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    title: {
-      fontSize: 40,
-      margin: 10,
-    },
-    inputContainer: {
-      margin: 10,
-      width: '70%',
-    },
-    input: {
-      height: 40,
-      margin: 5,
-      borderWidth: 1,
-      borderColor: 'white',
-      padding: 10,
-    },
-    button: {
-      width: "70%",
-      margin: 5,
-    }
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#303030',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 40,
+    margin: 10,
+  },
+  inputContainer: {
+    margin: 10,
+    width: '70%',
+  },
+  input: {
+    height: 40,
+    margin: 5,
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: 10,
+    borderRadius: 15,
+  },
+  button: {
+    width: "70%",
+    margin: 5,
+  }
+});
 
 export default SignUp;

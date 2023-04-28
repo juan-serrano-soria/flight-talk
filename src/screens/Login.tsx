@@ -1,10 +1,11 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useSetAtom } from "jotai/react";
 import { useState } from "react";
-import { Text, View, TextInput, StyleSheet, Button, Alert } from "react-native";
+import { Text, View, TextInput, StyleSheet, Alert } from "react-native";
 import { auth } from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { currentUserData, currentUserFriends, currentUserName, isLoggedIn } from "../state/state";
+import TextButton from "../components/TextButton";
 
 const Login = ({ navigation }) => {
   const setIsLoggedIn = useSetAtom(isLoggedIn);
@@ -74,10 +75,11 @@ const Login = ({ navigation }) => {
         />
       </View>
       <View style={styles.button}>
-        <Button onPress={logIn} title="Log In"/>
+        {/* <Button onPress={logIn} title="Log In"/> */}
+        <TextButton onPress={logIn} label="Log In"/>
       </View>
       <View style={styles.button}>
-        <Button onPress={goToSignUp} title="Sign Up"/>
+        <TextButton onPress={goToSignUp} label="Sign Up"/>
       </View>
     </View>
   )
@@ -86,7 +88,7 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#303030',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -104,6 +106,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     padding: 10,
+    borderRadius: 15,
   },
   button: {
     width: "70%",

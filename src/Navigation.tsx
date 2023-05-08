@@ -7,21 +7,30 @@ import SignUp from './screens/SignUp';
 import { isLoggedIn } from './state/state';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import SearchImages from './screens/SearchImages';
+import CustomDrawer from './components/CustomDrawer';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function Home() {
   return (
-    <Drawer.Navigator screenOptions={{
-      headerShown: false
-    }}>
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+        drawerType: 'front',
+        swipeEdgeWidth: 200,
+        drawerStyle: {
+          width: "75%",
+        },
+      }}
+      drawerContent={props => <CustomDrawer {...props} />}
+      >
       <Drawer.Screen
         name="Chats"
         component={Chats}
       />
       <Drawer.Screen
-        name="SearchImages"
+        name="Search Images"
         component={SearchImages}
       />
     </Drawer.Navigator>

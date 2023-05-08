@@ -8,23 +8,8 @@ import { isLoggedIn, currentUserData, currentUserFriends, currentUserName } from
 import { onValue, ref } from "firebase/database";
 
 const Chats = ({ navigation }) => {
-  const setIsLoggedIn = useSetAtom(isLoggedIn);
-  const setCurrentUserData = useSetAtom(currentUserData);
-  const setCurrentUserFriends = useSetAtom(currentUserFriends);
-  const setCurrentUserName = useSetAtom(currentUserName);
 
   const [friends, setFriends] = useState({});
-
-  const logOut = () => {
-    signOut(auth).then(() => {
-      setCurrentUserData({});
-      setCurrentUserFriends({});
-      setCurrentUserName("");
-      setIsLoggedIn(false);
-    }).catch((error) => {
-      console.log("Log out error\n", error.errorCode + " " + error.errorMessage);
-    });
-  };
 
   const currentUser = useAtomValue(currentUserName);
 
@@ -43,9 +28,6 @@ const Chats = ({ navigation }) => {
       <View>
         <Text style={styles.title}>Chats</Text>
       </View>
-      <View style={styles.button}>
-        <Button onPress={logOut} title="Log Out"/>
-      </View>
       <View style={{ width: '100%' }}>
         <ChatList chats={friends} />
       </View>
@@ -63,10 +45,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     margin: 10,
   },
-  button: {
-    width: "70%",
-    margin: 5,
-  }
 });
 
 export default Chats;

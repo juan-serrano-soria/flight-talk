@@ -4,6 +4,7 @@ import { useSetAtom } from "jotai";
 import { currentUserData, currentUserFriends, currentUserName, isLoggedIn } from "../state/state";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import IconDrawerButton from "./IconDrawerButton";
 
 
 const CustomDrawer = ( props ) => {
@@ -26,14 +27,14 @@ const CustomDrawer = ( props ) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Flight Chat</Text>
+        <Text style={styles.title}>Flight Talk!</Text>
       </View>
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
 
-      <View>
-        <Text onPress={logOut} style={styles.logout}>Log Out!</Text>
+      <View style={styles.buttonContainer}>
+        <IconDrawerButton name="log-out" label="Log Out!" onPress={logOut} />
       </View>
     </View>
   )
@@ -49,10 +50,8 @@ const styles = StyleSheet.create({
     margin: 10,
     color: 'black',
   },
-  logout: {
-    fontSize: 15,
-    margin: 10,
-    color: 'black',
+  buttonContainer: {
+    padding: 10,
   }
 });
 

@@ -6,6 +6,7 @@ import { database } from "../firebase";
 import { useAtomValue } from "jotai";
 import { currentUserName } from "../state/state";
 import { launchImageLibrary } from "react-native-image-picker";
+import ChatDetailHeader from "../components/ChatDetailHeader";
 
 const ChatDetail = ({ route, navigation }) => {
   const { name, chatId } = route.params.props;
@@ -58,12 +59,7 @@ const ChatDetail = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>{"Chat with " + name}</Text>
-      </View>
-      <View style={styles.button}>
-        <Button onPress={() => {navigation.navigate("Chats")}} title="<-"/>
-      </View>
+      <ChatDetailHeader name={"Chat with " + name} navigation={navigation}/>
       <View style={{ width: '100%', flex: 1 }}>
         <MessageList messages={messages} />
       </View>
@@ -89,14 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#303030'
-  },
-  title: {
-    fontSize: 30,
-    margin: 10,
-  },
-  button: {
-    width: "70%",
-    margin: 5,
   },
   input: {
     height: 40,

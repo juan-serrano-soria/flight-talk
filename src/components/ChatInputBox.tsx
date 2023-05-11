@@ -18,7 +18,7 @@ const ChatInputBox = (props: ChatInputBoxProps) => {
           style={styles.pressable}
           onPress={props.onSendImage}
         >
-          <Feather name={'image'} size={30} color={"grey"} />
+          <Feather name={'image'} size={30} color={"#A0A0A0"} />
         </Pressable>
       </View>
       <View style={styles.inputContainer}>
@@ -34,7 +34,7 @@ const ChatInputBox = (props: ChatInputBoxProps) => {
         style={styles.pressable}
         onPress={props.onSendText}
       >
-        <Feather name={'arrow-right'} size={30} color={"grey"} />
+        <Feather name={'arrow-right'} size={30} color={"#A0A0A0"} />
       </Pressable>
       </View>
     </View>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     width: '100%',
     margin: 0,
     borderWidth: 2,
-    borderColor: 'grey',
+    borderColor: '#A0A0A0',
     padding: 10,
     borderRadius: 15,
   },

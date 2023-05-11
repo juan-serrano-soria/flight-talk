@@ -15,7 +15,7 @@ const ChatDetailHeader = (props: ChatDetailHeaderProps) => {
           style={styles.pressable}
           onPress={() => {props.navigation.navigate("Chats")}}
         >
-          <Feather name={'chevron-left'} size={30} color={"grey"} />
+          <Feather name={'chevron-left'} size={30} color={"#A0A0A0"} />
         </Pressable>
       </View>
       <View>

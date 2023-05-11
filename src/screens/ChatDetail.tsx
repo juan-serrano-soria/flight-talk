@@ -23,6 +23,12 @@ const ChatDetail = ({ route, navigation }) => {
   }, []);
 
   const onSendTextMessage = () => {
+
+    if (!currentMessage.replace(/\s/g, '').length) {
+      setCurrentMessage("");
+      return
+    }
+  
     const timeStamp = Date.now();
 
     set(ref(database, 'chats/' + chatId + "/messages/" + timeStamp), {

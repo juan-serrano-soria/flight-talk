@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View, TextInput, Alert } from "react-native";
+import { StyleSheet, View, Alert } from "react-native";
 import { useState, useEffect } from "react";
 import { ref, onValue, set } from "firebase/database";
 import MessageList from "../components/MessageList";
@@ -7,6 +7,7 @@ import { useAtomValue } from "jotai";
 import { currentUserName } from "../state/state";
 import { launchImageLibrary } from "react-native-image-picker";
 import ChatDetailHeader from "../components/ChatDetailHeader";
+import ChatInputBox from "../components/ChatInputBox";
 
 const ChatDetail = ({ route, navigation }) => {
   const { name, chatId } = route.params.props;
@@ -69,19 +70,7 @@ const ChatDetail = ({ route, navigation }) => {
       <View style={{ width: '100%', flex: 1 }}>
         <MessageList messages={messages} />
       </View>
-      <View style={styles.inputBoxContainer}>
-        <View style={styles.selectImage}>
-          <Button onPress={onSendImageMessage} title="+"/>
-        </View>
-        <TextInput 
-          style={styles.input}
-          onChangeText={setCurrentMessage}
-          value={currentMessage}
-        />
-        <View style={styles.selectImage}>
-          <Button onPress={onSendTextMessage} title=">"/>
-        </View>
-      </View>
+      <ChatInputBox onSendImage={onSendImageMessage} currentText={currentMessage} onChangeText={setCurrentMessage} onSendText={onSendTextMessage} />
     </View>
   )
 }
@@ -91,21 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#303030'
-  },
-  input: {
-    height: 40,
-    width: '70%',
-    margin: 5,
-    borderWidth: 1,
-    borderColor: 'white',
-    padding: 10,
-  },
-  selectImage: {
-    paddingTop: 7.5,
-    width: '10%',
-  },
-  inputBoxContainer: {
-    flexDirection: 'row',
   },
 });
 

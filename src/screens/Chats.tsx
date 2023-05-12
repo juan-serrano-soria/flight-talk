@@ -1,16 +1,16 @@
 import { useAtomValue } from "jotai/react";
 import { useState, useEffect } from "react"; 
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet, Pressable, Alert } from "react-native";
 import ChatList from "../components/ChatList";
 import { database } from "../firebase";
 import { currentUserName } from "../state/state";
-import { onValue, ref } from "firebase/database";
+import { child, get, onValue, ref, set, update } from "firebase/database";
 import Feather from "react-native-vector-icons/Feather";
 import AddFriendSearchBox from "../components/AddFriendSearchBox";
 
 const Chats = () => {
 
-  const [friends, setFriends] = useState({});
+  const [myFriends, setFriends] = useState({});
   const [addFriend, setAddFriend] = useState("");
   const [showAddFriend, setShowAddFriend] = useState(false);
 
@@ -36,7 +36,79 @@ const Chats = () => {
       setAddFriend("");
       return
     }
-    console.log(addFriend);
+
+    if (addFriend === currentUser) {
+      Alert.alert("You cannot add yourself as a friend!");
+      setAddFriend("");
+      return
+    }
+
+    if (myFriends.hasOwnProperty(addFriend)) {
+      Alert.alert("Friend already added!");
+      setAddFriend("");
+      return
+    }
+
+    // search for user in database
+    const dbRef = ref(database);
+    get(child(dbRef, `users/`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        var found = false;
+
+        // find current user
+        for (var user in snapshot.val()){
+          var username = snapshot.val()[user]["user"];
+          if (username === addFriend) {
+            found = true;
+            var chatId = Math.floor(Date.now() + Math.random());
+            
+            // Add friend to current user
+            var curr = JSON.stringify(myFriends).slice(1,-1);
+            if(curr === "") {
+              var newFriends = '{' + `"${addFriend}": ` + chatId + '}';
+              var friends = JSON.parse(newFriends);
+            } else {
+              var newFriends = '{' + `"${addFriend}": ` + chatId + "," +  curr + '}';
+              var friends = JSON.parse(newFriends);
+            }
+            update(ref(database, 'users/' + currentUser), {
+              friends
+            });
+
+            // Add current user as friend to new friend
+            if (snapshot.val()[user].hasOwnProperty("friends")) {
+              var currentFriendsPepe = JSON.stringify(snapshot.val()[user]["friends"]);
+              var currFriendsFriend = currentFriendsPepe.slice(1,-1)
+              var newFriends = '{' + `"${currentUser}": ` + chatId + "," + currFriendsFriend + '}';
+              var friends = JSON.parse(newFriends);
+            } else {
+              var newFriends = '{' + `"${currentUser}": ` + chatId + '}';
+              var friends = JSON.parse(newFriends);
+            }
+            update(ref(database, 'users/' + addFriend), {
+              friends
+            });
+
+            // create chat between them
+            const timeStamp = Date.now();
+            set(ref(database, 'chats/' + chatId + "/messages/"  + timeStamp), {
+              from: currentUser,
+              message: "Hi! I just added you",
+              type: "text"
+            });
+
+            setAddFriend("");
+
+            break;
+          }
+        }
+        found ? Alert.alert("Friend added!") : Alert.alert("User not found!")
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
   return (
@@ -64,7 +136,7 @@ const Chats = () => {
           <></>
       }
       <View style={{ width: '100%' }}>
-        <ChatList chats={friends} />
+        <ChatList chats={myFriends} />
       </View>
     </View>
   )

@@ -3,7 +3,7 @@ import MessageListItem from "./MessageListItem";
 
 
 type MessageListProps = {
-  messages,
+  messages: any,
 }
 
 const MessageList = (props: MessageListProps) => {

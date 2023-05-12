@@ -2,7 +2,7 @@ import { FlatList } from "react-native";
 import ChatListItem from "./ChatListItem";
 
 type ChatListProps = {
-  chats,
+  chats: any,
 }
 
 const ChatList = (props: ChatListProps) => {

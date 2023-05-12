@@ -1,13 +1,12 @@
-import { signOut } from "firebase/auth";
-import { useSetAtom, useAtomValue } from "jotai/react";
+import { useAtomValue } from "jotai/react";
 import { useState, useEffect } from "react"; 
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import ChatList from "../components/ChatList";
-import { auth, database } from "../firebase";
-import { isLoggedIn, currentUserData, currentUserFriends, currentUserName } from "../state/state";
+import { database } from "../firebase";
+import { currentUserName } from "../state/state";
 import { onValue, ref } from "firebase/database";
 
-const Chats = ({ navigation }) => {
+const Chats = () => {
 
   const [friends, setFriends] = useState({});
 

@@ -16,6 +16,7 @@ const SearchImageInputBox = (props: SearchImageInputBoxProps) => {
           style={styles.input}
           onChangeText={props.onChangeText}
           value={props.currentText}
+          placeholder="What do you want to search?"
         />
       </View>
       <View style={styles.iconContainer}>

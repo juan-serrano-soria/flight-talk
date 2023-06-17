@@ -17,6 +17,7 @@ const SearchImageInputBox = (props: SearchImageInputBoxProps) => {
           onChangeText={props.onChangeText}
           value={props.currentText}
           placeholder="What do you want to search?"
+          placeholderTextColor="#999999"
         />
       </View>
       <View style={styles.iconContainer}>
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     width: '100%',
     margin: 0,
     padding: 10,
+    color: 'white',
   },
 });
 

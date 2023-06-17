@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     borderColor: '#A0A0A0',
     padding: 10,
     borderRadius: 15,
+    color: 'white',
   },
 });
 

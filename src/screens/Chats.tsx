@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     marginLeft: 15,
+    color: '#c1c1c1',
   },
   iconContainer: {
     height: '80%',

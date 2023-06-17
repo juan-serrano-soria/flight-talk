@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     margin: 10,
+    color: '#c1c1c1',
   },
   searchContainer: {
     marginHorizontal: 10,

@@ -32,18 +32,21 @@ const SignUp = ({ navigation }) => {
           onChangeText={setUser}
           value={user}
           placeholder="Username"
+          placeholderTextColor="#999999"
         />
         <TextInput
           style={styles.input}
           onChangeText={setEmail}
           value={email}
           placeholder="Email"
+          placeholderTextColor="#999999"
         />
         <TextInput
           style={styles.input}
           onChangeText={setPassword}
           value={password}
           placeholder="Password"
+          placeholderTextColor="#999999"
           secureTextEntry={true}
         />
         <TextInput
@@ -51,6 +54,7 @@ const SignUp = ({ navigation }) => {
           onChangeText={setRepeatPassword}
           value={repeatPassword}
           placeholder="Repeat password"
+          placeholderTextColor="#999999"
           secureTextEntry={true}
         />
       </View>
@@ -74,6 +78,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     margin: 10,
+    color: '#c1c1c1',
   },
   inputContainer: {
     margin: 10,
@@ -86,6 +91,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     padding: 10,
     borderRadius: 15,
+    color: 'white',
   },
   button: {
     width: "70%",

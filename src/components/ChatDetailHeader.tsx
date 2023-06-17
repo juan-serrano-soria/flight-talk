@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     margin: 10,
+    color: '#c1c1c1',
   },
   ripple: {
     color: '#737373',

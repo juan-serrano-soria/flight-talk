@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   text: {
     padding: 20,
     fontSize: 15,
+    color: '#c1c1c1',
   }
 });
 
